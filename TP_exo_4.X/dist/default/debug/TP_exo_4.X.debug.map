@@ -1,0 +1,52 @@
+MPLINK 5.09, LINKER
+Linker Map File - Created Wed Nov 22 11:52:30 2023
+
+                                 Section Info
+                  Section       Type    Address   Location Size(Bytes)
+                ---------  ---------  ---------  ---------  ---------
+                 RES_VECT       code   0x000000    program   0x000004
+                   .cinit    romdata   0x000004    program   0x000002
+                MAIN_PROG       code   0x000006    program   0x00003c
+                      var      udata   0x000000       data   0x000006
+
+
+
+                              Program Memory Usage 
+                               Start         End      
+                           ---------   ---------      
+                            0x000000    0x000041      
+            66 out of 8472 program addresses used, program memory utilization is 0%
+
+
+
+                              Symbols - Sorted by Name
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                    AJOUT   0x000012    program     static C:\Users\anton\MPLABXProjects\TP_microcontroleur\TP_exo_4.X\main_exo4.asm
+              AJOUT_CARRY   0x000006    program     static C:\Users\anton\MPLABXProjects\TP_microcontroleur\TP_exo_4.X\main_exo4.asm
+                   BOUCLE   0x00002c    program     static C:\Users\anton\MPLABXProjects\TP_microcontroleur\TP_exo_4.X\main_exo4.asm
+                    DEBUT   0x000036    program     static C:\Users\anton\MPLABXProjects\TP_microcontroleur\TP_exo_4.X\main_exo4.asm
+          _MAIN_PROG_0038   0x00003e    program     static C:\Users\anton\MPLABXProjects\TP_microcontroleur\TP_exo_4.X\main_exo4.asm
+             calcul_somme   0x000024    program     static C:\Users\anton\MPLABXProjects\TP_microcontroleur\TP_exo_4.X\main_exo4.asm
+                        i   0x000004       data     static C:\Users\anton\MPLABXProjects\TP_microcontroleur\TP_exo_4.X\main_exo4.asm
+               somme_high   0x000002       data     static C:\Users\anton\MPLABXProjects\TP_microcontroleur\TP_exo_4.X\main_exo4.asm
+                somme_low   0x000000       data     static C:\Users\anton\MPLABXProjects\TP_microcontroleur\TP_exo_4.X\main_exo4.asm
+                        w   0x000005       data     static C:\Users\anton\MPLABXProjects\TP_microcontroleur\TP_exo_4.X\main_exo4.asm
+
+
+
+                              Symbols - Sorted by Address
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+              AJOUT_CARRY   0x000006    program     static C:\Users\anton\MPLABXProjects\TP_microcontroleur\TP_exo_4.X\main_exo4.asm
+                    AJOUT   0x000012    program     static C:\Users\anton\MPLABXProjects\TP_microcontroleur\TP_exo_4.X\main_exo4.asm
+             calcul_somme   0x000024    program     static C:\Users\anton\MPLABXProjects\TP_microcontroleur\TP_exo_4.X\main_exo4.asm
+                   BOUCLE   0x00002c    program     static C:\Users\anton\MPLABXProjects\TP_microcontroleur\TP_exo_4.X\main_exo4.asm
+                    DEBUT   0x000036    program     static C:\Users\anton\MPLABXProjects\TP_microcontroleur\TP_exo_4.X\main_exo4.asm
+          _MAIN_PROG_0038   0x00003e    program     static C:\Users\anton\MPLABXProjects\TP_microcontroleur\TP_exo_4.X\main_exo4.asm
+                somme_low   0x000000       data     static C:\Users\anton\MPLABXProjects\TP_microcontroleur\TP_exo_4.X\main_exo4.asm
+               somme_high   0x000002       data     static C:\Users\anton\MPLABXProjects\TP_microcontroleur\TP_exo_4.X\main_exo4.asm
+                        i   0x000004       data     static C:\Users\anton\MPLABXProjects\TP_microcontroleur\TP_exo_4.X\main_exo4.asm
+                        w   0x000005       data     static C:\Users\anton\MPLABXProjects\TP_microcontroleur\TP_exo_4.X\main_exo4.asm
+
+
