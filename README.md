@@ -10,3 +10,5 @@ Les exercices actuellement en ligne sont :
 -  TP ex 2
 -  TP ex 3
 -  TP ex 4
+-  TP ex 5
+-  TP ex 6
