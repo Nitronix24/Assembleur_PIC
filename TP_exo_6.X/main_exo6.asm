@@ -185,22 +185,22 @@ RES_VECT  CODE    0x0000            ; processor reset vector
 
 MAIN_PROG CODE                      ; let linker place main program
 
-; la routine tableau permet de stocker les instructions suivantes dans la mÈmoire programme
+; la routine tableau permet de stocker les instructions suivantes dans la m√©moire programme
 tableau
-    ; rÈcupÈrer la valeur de index, multiplier par 2 et ajouter ‡ Program Counter
+    ; r√©cup√©rer la valeur de index, multiplier par 2 et ajouter √† Program Counter
     rlncf   index, W, ACCESS	    ; on le multiplie index par 2 et on le stocke dans WREG
-				    ; attention au dÈpassement mÈoire lors de la multiplication
-    addwf   PCL, F, ACCESS	    ; ajouter index*2 ‡ PCL
+				    ; attention au d√©passement m√©oire lors de la multiplication
+    addwf   PCL, F, ACCESS	    ; ajouter index*2 √† PCL
     
-    ; Tableau stockÈ en mÈmoire programme
-    retlw   0x19		    ; retourne ‡ l'instruction du Program Counter et charge 19 dans WREG
-    retlw   0x04		    ; retourne ‡ l'instruction du Program Counter et charge 4 dans WREG
-    retlw   0x02		    ; retourne ‡ l'instruction du Program Counter et charge 2 dans WREG
-    retlw   0x0F		    ; retourne ‡ l'instruction du Program Counter et charge 15 dans WREG
-    retlw   0x10		    ; retourne ‡ l'instruction du Program Counter et charge 16 dans WREG
-    retlw   0x65		    ; retourne ‡ l'instruction du Program Counter et charge 101 dans WREG
-    retlw   0x21		    ; retourne ‡ l'instruction du Program Counter et charge 33 dans WREG
-    retlw   0x03		    ; retourne ‡ l'instruction du Program Counter et charge 3 dans WREG
+    ; Tableau stock√© en m√©moire programme
+    retlw   0x19		    ; retourne √† l'instruction du Program Counter et charge 19 dans WREG
+    retlw   0x04		    ; retourne √† l'instruction du Program Counter et charge 4 dans WREG
+    retlw   0x02		    ; retourne √† l'instruction du Program Counter et charge 2 dans WREG
+    retlw   0x0F		    ; retourne √† l'instruction du Program Counter et charge 15 dans WREG
+    retlw   0x10		    ; retourne √† l'instruction du Program Counter et charge 16 dans WREG
+    retlw   0x65		    ; retourne √† l'instruction du Program Counter et charge 101 dans WREG
+    retlw   0x21		    ; retourne √† l'instruction du Program Counter et charge 33 dans WREG
+    retlw   0x03		    ; retourne √† l'instruction du Program Counter et charge 3 dans WREG
     
 swap    
     ; charger la valeur tableau[index]
@@ -212,8 +212,8 @@ swap
     cpfsgt  max, ACCESS		    ; Si max > WREG alors on skip la prochaine instruction
     movwf   max, ACCESS		    ; Charger WREG dans max
    
-    incf    index, F, ACCESS	    ; IncrÈmentation de l'index
-    decf    taille_tableau, F, ACCESS ; DÈcrÈmenter l'indice du tableau
+    incf    index, F, ACCESS	    ; Incr√©mentation de l'index
+    decf    taille_tableau, F, ACCESS ; D√©cr√©menter l'indice du tableau
     
     goto    loop_search		    ; jump to ""
     
@@ -223,22 +223,25 @@ recherche_tab
     movwf   index, ACCESS	    ; Charger WREG dans index
     ; initialiser taille_tableau = 8
     movlw   0x08		    ; on charge la valeur 8 dans WREG
-    movwf   taille_tableau, ACCESS  ; charger WREG ‡ l'adresse de taille_tableau
-    ; initialiser min et max avec la premiËre valeur du tableau
+    movwf   taille_tableau, ACCESS  ; charger WREG √† l'adresse de taille_tableau
+    ; initialiser min et max avec la premi√®re valeur du tableau
     call    tableau
     movwf   min, ACCESS		    ; charger WREG dans min
     movwf   max, ACCESS		    ; charger WREG dans min
     
     loop_search
-    ; tester si on est arrivÈ ‡ la fin du tableau
-    movlw   0x00		    ; Charger littÈralement 0 dans le registre de travail
+    ; tester si on est arriv√© √† la fin du tableau
+    movlw   0x00		    ; Charger litt√©ralement 0 dans le registre de travail
     cpfseq  taille_tableau, ACCESS  ; Si taille_tableau = 0 alors skip la prochaine instruction
     goto    swap
     fin_recherche
-    return			    ; retourne ‡ l'adresse de fin de routine 
+    return			    ; retourne √† l'adresse de fin de routine 
     
     
 DEBUT
+    ; selectionner la banque 1 de la m√©moire programme
+    movlw   0x100		    
+    movf    PCLATH, F, ACCESS
 
     ; Appel de la routine recherche min et max
     call    recherche_tab
