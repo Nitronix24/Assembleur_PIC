@@ -196,102 +196,102 @@ MAIN_PROG CODE                      ; let linker place main program
  
 ; Routine de calcul de la longueur de pwd
 calcul_longueur
-    movlw   0x01		    ; Charger littéralement 1 dans le registre de travail
-    movwf   FSR0H, ACCESS	    ; Charger WREG dans FSR0H pour l'innitialisé sur la banque 1
-    clrf    FSR0L, ACCESS	    ; Reset FSR0L à 0 pour sélectionner la case 0
+    movlw   0x01		    ; Charger littÃ©ralement 1 dans le registre de travail
+    movwf   FSR0H, ACCESS	    ; Charger WREG dans FSR0H pour l'innitialisÃ© sur la banque 1
+    clrf    FSR0L, ACCESS	    ; Reset FSR0L Ã  0 pour sÃ©lectionner la case 0
     
-    clrf    lenght, ACCESS	    ; Reset lenght à 0
+    clrf    lenght, ACCESS	    ; Reset lenght Ã  0
 loop_calcul_longueur
-    movf    POSTINC0, W		    ; Charger l'adresse de POSTINC0 dans WREG puis incrémenter le FSR0
+    movf    POSTINC0, W		    ; Charger l'adresse de POSTINC0 dans WREG puis incrÃ©menter le FSR0
     bz	    fin_calcul_longueur	    ; Si ZERO dans le registre STATUS = 1 alors jump sur ""
     incf    lenght, F, ACCESS	    ; lenght = lenght + 1
     goto    loop_calcul_longueur    ; jump to ""
 fin_calcul_longueur
-    return			    ; retourne à l'adresse de fin de routine
+    return			    ; retourne Ã  l'adresse de fin de routine
 
     
-; Routine de calcul de la longueur de pwd crypté
+; Routine de calcul de la longueur de pwd chiffrÃ©
 calcul_longueur_crypt
-    movlw   0x02			; Charger littéralement 2 dans le registre de travail
-    movwf   FSR1H, ACCESS		; Charger WREG dans FSR1H pour l'innitialisé sur la banque 2
-    movlw   0x01			; Charger littéralement 1 dans le registre de travail
-    movwf   FSR1L, ACCESS		; Charger WREG dans FSR1L pour sélectionner la case 1
+    movlw   0x02			; Charger littÃ©ralement 2 dans le registre de travail
+    movwf   FSR1H, ACCESS		; Charger WREG dans FSR1H pour l'innitialisÃ© sur la banque 2
+    movlw   0x01			; Charger littÃ©ralement 1 dans le registre de travail
+    movwf   FSR1L, ACCESS		; Charger WREG dans FSR1L pour sÃ©lectionner la case 1
     
-    clrf    lenght_crypt, 1		; Reset lenght_crypt à 0
+    clrf    lenght_crypt, 1		; Reset lenght_crypt Ã  0
 loop_calcul_longueur_crypt
-    movf    POSTINC1, W			; Charger l'adresse de POSTINC1 dans WREG puis incrémenter l'adresse du FSR1
+    movf    POSTINC1, W			; Charger l'adresse de POSTINC1 dans WREG puis incrÃ©menter l'adresse du FSR1
     bz	    fin_calcul_longueur_crypt	; Si ZERO dans le registre STATUS = 1 alors jump sur ""
     incf    lenght_crypt, F, 1		; lenght_crypt = lenght_crypt + 1
     goto    loop_calcul_longueur_crypt	; jump to ""
 fin_calcul_longueur_crypt
-    return				; retourne à l'adresse de fin de routine
+    return				; retourne Ã  l'adresse de fin de routine
     
     
 ; Boucle de chiffrement de pwd dans la banque 2
 change_crypt
-    movf    POSTINC0, W		    ; Charger l'adresse de POSTINC0 dans WREG puis incrémenter l'adresse du FSR0
+    movf    POSTINC0, W		    ; Charger l'adresse de POSTINC0 dans WREG puis incrÃ©menter l'adresse du FSR0
     movwf   INDF1, ACCESS	    ; Charger WREG dans l'adresse du FRS1
     btg	    INDF1, 6, ACCESS	    ; inverser le bit 6 de l'adresse du FRS1
     btg	    INDF1, 4, ACCESS	    ; inverser le bit 4 de l'adresse du FRS1
     btg	    INDF1, 2, ACCESS	    ; inverser le bit 2 de l'adresse du FRS1
-    btg	    POSTINC1, 0, ACCESS	    ; inverser le bit 0 de l'adresse du FRS1 puis incrémenter l'adresse du FRS1
+    btg	    POSTINC1, 0, ACCESS	    ; inverser le bit 0 de l'adresse du FRS1 puis incrÃ©menter l'adresse du FRS1
     
     decf    lenght_crypt, f, 1	    ; lenght_crypt = lenght_crypt - 1 
     
     goto    loop_crypt		    ; jump to ""
-; Routine de cryptage 
-cryptage
-    movlw   0x01		    ; Charger littéralement 1 dans le registre de travail
-    movwf   FSR0H, ACCESS	    ; Charger WREG dans FSR0H pour l'innitialisé sur la banque 1
-    clrf    FSR0L, ACCESS	    ; Reset FSR0L à 0 pour sélectionner la case 0
+; Routine de chiffrement 
+chiffrement
+    movlw   0x01		    ; Charger littÃ©ralement 1 dans le registre de travail
+    movwf   FSR0H, ACCESS	    ; Charger WREG dans FSR0H pour l'innitialisÃ© sur la banque 1
+    clrf    FSR0L, ACCESS	    ; Reset FSR0L Ã  0 pour sÃ©lectionner la case 0
     
-    movlw   0x02		    ; Charger littéralement 2 dans le registre de travail
-    movwf   FSR1H, ACCESS	    ; Charger WREG dans FSR1H pour l'innitialisé sur la banque 2
-    movlw   0x01		    ; Charger littéralement 1 dans le registre de travail
-    movwf   FSR1L, ACCESS	    ; Charger WREG dans FSR1L pour sélectionner la case 1
+    movlw   0x02		    ; Charger littÃ©ralement 2 dans le registre de travail
+    movwf   FSR1H, ACCESS	    ; Charger WREG dans FSR1H pour l'innitialisÃ© sur la banque 2
+    movlw   0x01		    ; Charger littÃ©ralement 1 dans le registre de travail
+    movwf   FSR1L, ACCESS	    ; Charger WREG dans FSR1L pour sÃ©lectionner la case 1
     
     movf    lenght, W		    ; Charger lenght dans le registre de travail
-    MOVLB   0x02		    ; Changer le BSR pour sélectionner la banque 2
+    MOVLB   0x02		    ; Changer le BSR pour sÃ©lectionner la banque 2
     movwf    lenght_crypt, 1	    ; Charger WREG dans lenght_crypt
 loop_crypt   
-    movlw   0x00		    ; Charger littéralement 0 dans le registre de travail
+    movlw   0x00		    ; Charger littÃ©ralement 0 dans le registre de travail
     CPFSEQ  lenght_crypt, 1	    ; Si lenght_crypt = 0 alors skip la prochaine instruction
     goto    change_crypt	    ; jump to ""
-    movlw   0x00		    ; Charger littéralement 0 dans le registre de travail
-    movwf   INDF1, ACCESS	    ; Charger WREG dans l'adresse de INDF1 pour ajouter le caractère de fin de chaîne
+    movlw   0x00		    ; Charger littÃ©ralement 0 dans le registre de travail
+    movwf   INDF1, ACCESS	    ; Charger WREG dans l'adresse de INDF1 pour ajouter le caractÃ¨re de fin de chaÃ®ne
 fin_cryptage
     return			    ; retourner vers l'adresse de fin de routine
 
     
-; Boucle d'inversion des caractère   
+; Boucle d'inversion des caractÃ¨re   
 inv_crypt
-    movf    POSTDEC1, W, ACCESS	    ; Charger FRS1 dans WREG puis décrémenter l'adresse de FSR1
-    movwf   POSTINC0, ACCESS	    ; Charger WREG dans FSR0 puis incrémenter l'adresse de FSR0
+    movf    POSTDEC1, W, ACCESS	    ; Charger FRS1 dans WREG puis dÃ©crÃ©menter l'adresse de FSR1
+    movwf   POSTINC0, ACCESS	    ; Charger WREG dans FSR0 puis incrÃ©menter l'adresse de FSR0
     
     decf    lenght_crypt_inv, F, 1  ; lenght_crypt_inv = lenght_crypt_inv - 1
     
     goto    loop_inv_pwd	    ; jump to ""  
 ; Routine d'inversion de sens du pwd
 inv_pwd_crypt
-    movlw   0x02		    ; Charger littéralement 2 dans le registre de travail
-    movwf   FSR1H, ACCESS	    ; Charger WREG dans FSR1H pour l'innitialisé sur la banque 2
+    movlw   0x02		    ; Charger littÃ©ralement 2 dans le registre de travail
+    movwf   FSR1H, ACCESS	    ; Charger WREG dans FSR1H pour l'innitialisÃ© sur la banque 2
     movf    lenght_crypt, W	    ; Charger lenght_crypt + 1 dans le registre de travail
-    movwf   FSR1L, ACCESS	    ; Charger WREG dans FSR1L pour sélectionner la case 09
+    movwf   FSR1L, ACCESS	    ; Charger WREG dans FSR1L pour sÃ©lectionner la case 09
     
-    movlw   0x03		    ; Charger littéralement 3 dans le registre de travail
-    movwf   FSR0H, ACCESS	    ; Charger WREG dans FSR0H pour l'innitialisé sur la banque 3
-    movlw   0x01		    ; Charger littéralement 1 dans le registre de travail
-    movwf   FSR0L, ACCESS	    ; Charger WREG dans FSR0L pour sélectionner la case 1
+    movlw   0x03		    ; Charger littÃ©ralement 3 dans le registre de travail
+    movwf   FSR0H, ACCESS	    ; Charger WREG dans FSR0H pour l'innitialisÃ© sur la banque 3
+    movlw   0x01		    ; Charger littÃ©ralement 1 dans le registre de travail
+    movwf   FSR0L, ACCESS	    ; Charger WREG dans FSR0L pour sÃ©lectionner la case 1
     
     movf    lenght_crypt, W	    ; Charger lenght_crypt dans le registre de travail
-    MOVLB   0x03		    ; Changer le BSR pour sélectionner la banque 3
+    MOVLB   0x03		    ; Changer le BSR pour sÃ©lectionner la banque 3
     movwf   lenght_crypt_inv, 1	    ; Charger WREG dans lenght_crypt_inv
 loop_inv_pwd
-    movlw   0x00		    ; Charger littéralement 0 dans le registre de travail
+    movlw   0x00		    ; Charger littÃ©ralement 0 dans le registre de travail
     CPFSEQ  lenght_crypt, 1	    ; Si lenght_crypt = 0 alors skip la prochaine instruction
     goto    inv_crypt		    ; jump to ""
-    movlw   0x00		    ; Charger littéralement 0 dans le registre de travail
-    movwf   INDF0, ACCESS	    ; Charger WREG dans l'adresse de INDF0 pour ajouter le caractère de fin de chaîne
+    movlw   0x00		    ; Charger littÃ©ralement 0 dans le registre de travail
+    movwf   INDF0, ACCESS	    ; Charger WREG dans l'adresse de INDF0 pour ajouter le caractÃ¨re de fin de chaÃ®ne
 fin_inv_pwd_crypt
     return
     
@@ -299,49 +299,49 @@ DEBUT
 
     ; TODO Step #5 - Insert Your Program Here
    
-    ; 1.0 Écriture dans la RAM du code d?accès JUNIA_STUDENTS
+    ; 1.0 Ã‰criture dans la RAM du code d?accÃ¨s JUNIA_STUDENTS
     MOVLB   0x01		    ; choisir la banque 1
    
     MOVLW   0x01		    ; Charger l'addresse de la banque de password dans WREG (ici banque = 1)
     MOVWF   FSR0H		    ; Mettre la valeur de WREG dans le registre FSRHigh
-    CLRF    FSR0L		    ; reset la valeur de FSRLow à 0 pour sélectionner l'addresse de password
+    CLRF    FSR0L		    ; reset la valeur de FSRLow Ã  0 pour sÃ©lectionner l'addresse de password
     
     ; 813nv3nu3
-    ; Écrire la valeur A'8' à l'emplacement mémoire pointé par FSR
+    ; Ã‰crire la valeur A'8' Ã  l'emplacement mÃ©moire pointÃ© par FSR
     MOVLW   A'8'		    ; Charger la valeur A'8' dans WREG
-    ; POSTINC0 écrit la valeur de WREG à l'emplacement mémoire pointé par FSR puis ajoute 1 au FRS
-    MOVWF   POSTINC0		    ; Écrire la valeur de WREG à l'emplacement mémoire pointé par FSR
+    ; POSTINC0 Ã©crit la valeur de WREG Ã  l'emplacement mÃ©moire pointÃ© par FSR puis ajoute 1 au FRS
+    MOVWF   POSTINC0		    ; Ã‰crire la valeur de WREG Ã  l'emplacement mÃ©moire pointÃ© par FSR
     
     MOVLW   A'1'		    ; Charger la valeur A'1' dans WREG
-    MOVWF   POSTINC0		    ; Écrire la valeur de WREG à l'emplacement mémoire pointé par FSR
+    MOVWF   POSTINC0		    ; Ã‰crire la valeur de WREG Ã  l'emplacement mÃ©moire pointÃ© par FSR
     MOVLW   A'3'		    ; Charger la valeur A'1' dans WREG
-    MOVWF   POSTINC0		    ; Écrire la valeur de WREG à l'emplacement mémoire pointé par FSR
+    MOVWF   POSTINC0		    ; Ã‰crire la valeur de WREG Ã  l'emplacement mÃ©moire pointÃ© par FSR
     MOVLW   A'n'		    ; Charger la valeur A'1' dans WREG
-    MOVWF   POSTINC0		    ; Écrire la valeur de WREG à l'emplacement mémoire pointé par FSR
+    MOVWF   POSTINC0		    ; Ã‰crire la valeur de WREG Ã  l'emplacement mÃ©moire pointÃ© par FSR
     MOVLW   A'v'		    ; Charger la valeur A'1' dans WREG
-    MOVWF   POSTINC0		    ; Écrire la valeur de WREG à l'emplacement mémoire pointé par FSR
+    MOVWF   POSTINC0		    ; Ã‰crire la valeur de WREG Ã  l'emplacement mÃ©moire pointÃ© par FSR
     MOVLW   A'3'		    ; Charger la valeur A'1' dans WREG
-    MOVWF   POSTINC0		    ; Écrire la valeur de WREG à l'emplacement mémoire pointé par FSR
+    MOVWF   POSTINC0		    ; Ã‰crire la valeur de WREG Ã  l'emplacement mÃ©moire pointÃ© par FSR
     MOVLW   A'n'		    ; Charger la valeur A'1' dans WREG
-    MOVWF   POSTINC0		    ; Écrire la valeur de WREG à l'emplacement mémoire pointé par FSR
+    MOVWF   POSTINC0		    ; Ã‰crire la valeur de WREG Ã  l'emplacement mÃ©moire pointÃ© par FSR
     MOVLW   A'u'		    ; Charger la valeur A'1' dans WREG
-    MOVWF   POSTINC0		    ; Écrire la valeur de WREG à l'emplacement mémoire pointé par FSR
+    MOVWF   POSTINC0		    ; Ã‰crire la valeur de WREG Ã  l'emplacement mÃ©moire pointÃ© par FSR
     MOVLW   A'3'		    ; Charger la valeur A'1' dans WREG
-    MOVWF   POSTINC0		    ; Écrire la valeur de WREG à l'emplacement mémoire pointé par FSR3
+    MOVWF   POSTINC0		    ; Ã‰crire la valeur de WREG Ã  l'emplacement mÃ©moire pointÃ© par FSR3
     MOVLW   0x00		    ; Charger la valeur 0x00 dans WREG
-    MOVWF   POSTINC0		    ; Écrire la valeur de WREG à l'emplacement mémoire pointé par FSR3
+    MOVWF   POSTINC0		    ; Ã‰crire la valeur de WREG Ã  l'emplacement mÃ©moire pointÃ© par FSR3
     
     
-    ; 2.0 Calcul de la longueur de la chaîne
+    ; 2.0 Calcul de la longueur de la chaÃ®ne
     
     call    calcul_longueur
     
-    ; 3.0 Cryptage du code
+    ; 3.0 Chiffrement du code
     
-    call    cryptage
+    call    chiffrement
     call    calcul_longueur_crypt
     
-    ; 4.0 Cryptage du code crypté
+    ; 4.0 chiffrement du code chiffrÃ©
     
     call    inv_pwd_crypt
     
