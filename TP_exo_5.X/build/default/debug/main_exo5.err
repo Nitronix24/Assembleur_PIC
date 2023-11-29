@@ -1,0 +1,4 @@
+Warning[207] C:\USERS\ANTON\MPLABXPROJECTS\TP_MICROCONTROLEUR\TP_EXO_5.X\MAIN_EXO5.ASM 234 : Found label after column 1. (loop_search_min)
+Warning[207] C:\USERS\ANTON\MPLABXPROJECTS\TP_MICROCONTROLEUR\TP_EXO_5.X\MAIN_EXO5.ASM 238 : Found label after column 1. (fin_recherche_min)
+Warning[207] C:\USERS\ANTON\MPLABXPROJECTS\TP_MICROCONTROLEUR\TP_EXO_5.X\MAIN_EXO5.ASM 260 : Found label after column 1. (loop_search_max)
+Warning[207] C:\USERS\ANTON\MPLABXPROJECTS\TP_MICROCONTROLEUR\TP_EXO_5.X\MAIN_EXO5.ASM 264 : Found label after column 1. (fin_recherche_max)
