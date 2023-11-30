@@ -93,11 +93,6 @@
 
 ; TODO INSERT CONFIG HERE
     
-var_ACS	UDATA_ACS
-taille_tableau	RES	1
-min		RES	1
-max		RES	1
-index		RES	1
 
 ;*******************************************************************************
 ;
@@ -126,6 +121,29 @@ index		RES	1
 ;*******************************************************************************
 
 ; TODO PLACE VARIABLE DEFINITIONS GO HERE
+var_ACS	UDATA_ACS
+taille_tableau	RES	1
+min		RES	1
+max		RES	1
+index		RES	1
+
+label	CODE	0x0100
+; la routine tableau permet de stocker les instructions suivantes dans la mémoire programme
+tableau
+    ; récupérer la valeur de index, multiplier par 2 et ajouter à Program Counter
+    rlncf   index, W, ACCESS	    ; on le multiplie index par 2 et on le stocke dans WREG
+				    ; attention au dépassement méoire lors de la multiplication
+    addwf   PCL, F, ACCESS	    ; ajouter index*2 à PCL
+    
+    ; Tableau stocké en mémoire programme
+    retlw   0x19		    ; retourne à l'instruction du Program Counter et charge 19 dans WREG
+    retlw   0x04		    ; retourne à l'instruction du Program Counter et charge 4 dans WREG
+    retlw   0x02		    ; retourne à l'instruction du Program Counter et charge 2 dans WREG
+    retlw   0x0F		    ; retourne à l'instruction du Program Counter et charge 15 dans WREG
+    retlw   0x10		    ; retourne à l'instruction du Program Counter et charge 16 dans WREG
+    retlw   0x65		    ; retourne à l'instruction du Program Counter et charge 101 dans WREG
+    retlw   0x21		    ; retourne à l'instruction du Program Counter et charge 33 dans WREG
+    retlw   0x03		    ; retourne à l'instruction du Program Counter et charge 3 dans WREG
 
 ;*******************************************************************************
 ; Reset Vector
@@ -183,25 +201,9 @@ RES_VECT  CODE    0x0000            ; processor reset vector
 ; MAIN PROGRAM
 ;*******************************************************************************
 
-MAIN_PROG CODE                      ; let linker place main program
+MAIN_PROG CODE                      ; let linker place main program    
 
-; la routine tableau permet de stocker les instructions suivantes dans la mémoire programme
-tableau
-    ; récupérer la valeur de index, multiplier par 2 et ajouter à Program Counter
-    rlncf   index, W, ACCESS	    ; on le multiplie index par 2 et on le stocke dans WREG
-				    ; attention au dépassement méoire lors de la multiplication
-    addwf   PCL, F, ACCESS	    ; ajouter index*2 à PCL
-    
-    ; Tableau stocké en mémoire programme
-    retlw   0x19		    ; retourne à l'instruction du Program Counter et charge 19 dans WREG
-    retlw   0x04		    ; retourne à l'instruction du Program Counter et charge 4 dans WREG
-    retlw   0x02		    ; retourne à l'instruction du Program Counter et charge 2 dans WREG
-    retlw   0x0F		    ; retourne à l'instruction du Program Counter et charge 15 dans WREG
-    retlw   0x10		    ; retourne à l'instruction du Program Counter et charge 16 dans WREG
-    retlw   0x65		    ; retourne à l'instruction du Program Counter et charge 101 dans WREG
-    retlw   0x21		    ; retourne à l'instruction du Program Counter et charge 33 dans WREG
-    retlw   0x03		    ; retourne à l'instruction du Program Counter et charge 3 dans WREG
-    
+ 
 swap    
     ; charger la valeur tableau[index]
     call    tableau		    ; appel de la routine tableau
@@ -239,10 +241,11 @@ recherche_tab
     
     
 DEBUT
+    
     ; selectionner la banque 1 de la mémoire programme
-    movlw   0x100		    
-    movf    PCLATH, F, ACCESS
-
+    movlw   0x01		    
+    movwf   PCLATH, ACCESS
+    
     ; Appel de la routine recherche min et max
     call    recherche_tab
     
