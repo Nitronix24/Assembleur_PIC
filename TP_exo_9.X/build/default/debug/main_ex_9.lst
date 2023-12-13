@@ -1,0 +1,1247 @@
+MPASM 5.87                     MAIN_EX_9.ASM   12-13-2023  8:51:43         PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00001 ;*******************************************************************************
+                      00002 ;                                                                              *
+                      00003 ;    Microchip licenses this software to you solely for use with Microchip     *
+                      00004 ;    products. The software is owned by Microchip and/or its licensors, and is *
+                      00005 ;    protected under applicable copyright laws.  All rights reserved.          *
+                      00006 ;                                                                              *
+                      00007 ;    This software and any accompanying information is for suggestion only.    *
+                      00008 ;    It shall not be deemed to modify Microchip?s standard warranty for its    *
+                      00009 ;    products.  It is your responsibility to ensure that this software meets   *
+                      00010 ;    your requirements.                                                        *
+                      00011 ;                                                                              *
+                      00012 ;    SOFTWARE IS PROVIDED "AS IS".  MICROCHIP AND ITS LICENSORS EXPRESSLY      *
+                      00013 ;    DISCLAIM ANY WARRANTY OF ANY KIND, WHETHER EXPRESS OR IMPLIED, INCLUDING  *
+                      00014 ;    BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS    *
+                      00015 ;    FOR A PARTICULAR PURPOSE, OR NON-INFRINGEMENT. IN NO EVENT SHALL          *
+                      00016 ;    MICROCHIP OR ITS LICENSORS BE LIABLE FOR ANY INCIDENTAL, SPECIAL,         *
+                      00017 ;    INDIRECT OR CONSEQUENTIAL DAMAGES, LOST PROFITS OR LOST DATA, HARM TO     *
+                      00018 ;    YOUR EQUIPMENT, COST OF PROCUREMENT OF SUBSTITUTE GOODS, TECHNOLOGY OR    *
+                      00019 ;    SERVICES, ANY CLAIMS BY THIRD PARTIES (INCLUDING BUT NOT LIMITED TO ANY   *
+                      00020 ;    DEFENSE THEREOF), ANY CLAIMS FOR INDEMNITY OR CONTRIBUTION, OR OTHER      *
+                      00021 ;    SIMILAR COSTS.                                                            *
+                      00022 ;                                                                              *
+                      00023 ;    To the fullest extend allowed by law, Microchip and its licensors         *
+                      00024 ;    liability shall not exceed the amount of fee, if any, that you have paid  *
+                      00025 ;    directly to Microchip to use this software.                               *
+                      00026 ;                                                                              *
+                      00027 ;    MICROCHIP PROVIDES THIS SOFTWARE CONDITIONALLY UPON YOUR ACCEPTANCE OF    *
+                      00028 ;    THESE TERMS.                                                              *
+                      00029 ;                                                                              *
+                      00030 ;*******************************************************************************
+                      00031 ;                                                                              *
+                      00032 ;    Filename:                                                                 *
+                      00033 ;    Date:                                                                     *
+                      00034 ;    File Version:                                                             *
+                      00035 ;    Author:                                                                   *
+                      00036 ;    Company:                                                                  *
+                      00037 ;    Description:                                                              *
+                      00038 ;                                                                              *
+                      00039 ;*******************************************************************************
+                      00040 ;                                                                              *
+                      00041 ;    Notes: In the MPLAB X Help, refer to the MPASM Assembler documentation    *
+                      00042 ;    for information on assembly instructions.                                 *
+                      00043 ;                                                                              *
+                      00044 ;*******************************************************************************
+                      00045 ;                                                                              *
+                      00046 ;    Known Issues: This template is designed for relocatable code.  As such,   *
+                      00047 ;    build errors such as "Directive only allowed when generating an object    *
+                      00048 ;    file" will result when the 'Build in Absolute Mode' checkbox is selected  *
+                      00049 ;    in the project properties.  Designing code in absolute mode is            *
+                      00050 ;    antiquated - use relocatable mode.                                        *
+                      00051 ;                                                                              *
+                      00052 ;*******************************************************************************
+                      00053 ;                                                                              *
+MPASM 5.87                     MAIN_EX_9.ASM   12-13-2023  8:51:43         PAGE  2
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00054 ;    Revision History:                                                         *
+                      00055 ;                                                                              *
+                      00056 ;*******************************************************************************
+                      00057 
+                      00058 
+                      00059 
+                      00060 ;*******************************************************************************
+                      00061 ; Processor Inclusion
+                      00062 ;
+                      00063 ; TODO Step #1 Open the task list under Window > Tasks.  Include your
+                      00064 ; device .inc file - e.g. #include <device_name>.inc.  Available
+                      00065 ; include files are in C:\Program Files\Microchip\MPLABX\mpasmx
+                      00066 ; assuming the default installation path for MPLAB X.  You may manually find
+                      00067 ; the appropriate include file for your device here and include it, or
+                      00068 ; simply copy the include generated by the configuration bits
+                      00069 ; generator (see Step #2).
+                      00070 ;
+                      00071 ;*******************************************************************************
+                      00072 
+                      00073 ; TODO INSERT INCLUDE CODE HERE
+                      00074 
+                      00075 ;*******************************************************************************
+                      00076 ;
+                      00077 ; TODO Step #2 - Configuration Word Setup
+                      00078 ;
+                      00079 ; The 'CONFIG' directive is used to embed the configuration word within the
+                      00080 ; .asm file. MPLAB X requires users to embed their configuration words
+                      00081 ; into source code.  See the device datasheet for additional information
+                      00082 ; on configuration word settings.  Device configuration bits descriptions
+                      00083 ; are in C:\Program Files\Microchip\MPLABX\mpasmx\P<device_name>.inc
+                      00084 ; (may change depending on your MPLAB X installation directory).
+                      00085 ;
+                      00086 ; MPLAB X has a feature which generates configuration bits source code.  Go to
+                      00087 ; Window > PIC Memory Views > Configuration Bits.  Configure each field as
+                      00088 ; needed and select 'Generate Source Code to Output'.  The resulting code which
+                      00089 ; appears in the 'Output Window' > 'Config Bits Source' tab may be copied
+                      00090 ; below.
+                      00091 ;
+                      00092 ;*******************************************************************************
+                      00093 
+                      00094 ; TODO INSERT CONFIG HERE
+                      00095 
+                      00096     
+                      00097 #include "p18f23k20.inc"
+                      00001         LIST
+                      00002 
+                      00003 ;==========================================================================
+                      00004 ; Build date : Jan 06 2020
+                      00005 ;  MPASM PIC18F23K20 processor include
+                      00006 ; 
+                      00007 ;  (c) Copyright 1999-2020 Microchip Technology, All rights reserved
+                      00008 ;==========================================================================
+                      00009 
+MPASM 5.87                     MAIN_EX_9.ASM   12-13-2023  8:51:43         PAGE  3
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      01396         LIST
+                      00098 
+                      00099 ; CONFIG1H
+                      00100   CONFIG  FOSC = INTIO7         ; Oscillator Selection bits (Internal oscillator block, CLKOUT function 
+                            on RA6, port function on RA7)
+                      00101   CONFIG  FCMEN = OFF           ; Fail-Safe Clock Monitor Enable bit (Fail-Safe Clock Monitor disabled)
+                      00102   CONFIG  IESO = OFF            ; Internal/External Oscillator Switchover bit (Oscillator Switchover mod
+                            e disabled)
+                      00103 
+                      00104 ; CONFIG2L
+                      00105   CONFIG  PWRT = OFF            ; Power-up Timer Enable bit (PWRT disabled)
+                      00106   CONFIG  BOREN = SBORDIS       ; Brown-out Reset Enable bits (Brown-out Reset enabled in hardware only 
+                            (SBOREN is disabled))
+                      00107   CONFIG  BORV = 18             ; Brown Out Reset Voltage bits (VBOR set to 1.8 V nominal)
+                      00108 
+                      00109 ; CONFIG2H
+                      00110   CONFIG  WDTEN = OFF           ; Watchdog Timer Enable bit (WDT is controlled by SWDTEN bit of the WDTC
+                            ON register)
+                      00111   CONFIG  WDTPS = 32768         ; Watchdog Timer Postscale Select bits (1:32768)
+                      00112 
+                      00113 ; CONFIG3H
+                      00114   CONFIG  CCP2MX = PORTBE       ; CCP2 MUX bit (CCP2 input/output is multiplexed with RB3)
+                      00115   CONFIG  PBADEN = OFF          ; PORTB A/D Enable bit (PORTB<4:0> pins are configured as digital I/O on
+                             Reset)
+                      00116   CONFIG  LPT1OSC = OFF         ; Low-Power Timer1 Oscillator Enable bit (Timer1 configured for higher p
+                            ower operation)
+                      00117   CONFIG  HFOFST = ON           ; HFINTOSC Fast Start-up (HFINTOSC starts clocking the CPU without waiti
+                            ng for the oscillator to stablize.)
+                      00118   CONFIG  MCLRE = ON            ; MCLR Pin Enable bit (MCLR pin enabled; RE3 input pin disabled)
+                      00119 
+                      00120 ; CONFIG4L
+                      00121   CONFIG  STVREN = ON           ; Stack Full/Underflow Reset Enable bit (Stack full/underflow will cause
+                             Reset)
+                      00122   CONFIG  LVP = OFF             ; Single-Supply ICSP Enable bit (Single-Supply ICSP disabled)
+                      00123   CONFIG  XINST = OFF           ; Extended Instruction Set Enable bit (Instruction set extension and Ind
+                            exed Addressing mode disabled (Legacy mode))
+                      00124 
+                      00125 ; CONFIG5L
+                      00126   CONFIG  CP0 = OFF             ; Code Protection Block 0 (Block 0 (000200-000FFFh) not code-protected)
+                      00127   CONFIG  CP1 = OFF             ; Code Protection Block 1 (Block 1 (001000-001FFFh) not code-protected)
+                      00128 
+                      00129 ; CONFIG5H
+                      00130   CONFIG  CPB = OFF             ; Boot Block Code Protection bit (Boot block (000000-0001FFh) not code-p
+                            rotected)
+                      00131   CONFIG  CPD = OFF             ; Data EEPROM Code Protection bit (Data EEPROM not code-protected)
+                      00132 
+                      00133 ; CONFIG6L
+                      00134   CONFIG  WRT0 = OFF            ; Write Protection Block 0 (Block 0 (000200-000FFFh) not write-protected
+                            )
+                      00135   CONFIG  WRT1 = OFF            ; Write Protection Block 1 (Block 1 (001000-001FFFh) not write-protected
+                            )
+                      00136 
+                      00137 ; CONFIG6H
+MPASM 5.87                     MAIN_EX_9.ASM   12-13-2023  8:51:43         PAGE  4
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00138   CONFIG  WRTC = OFF            ; Configuration Register Write Protection bit (Configuration registers (
+                            300000-3000FFh) not write-protected)
+                      00139   CONFIG  WRTB = OFF            ; Boot Block Write Protection bit (Boot Block (000000-0001FFh) not write
+                            -protected)
+                      00140   CONFIG  WRTD = OFF            ; Data EEPROM Write Protection bit (Data EEPROM not write-protected)
+                      00141 
+                      00142 ; CONFIG7L
+                      00143   CONFIG  EBTR0 = OFF           ; Table Read Protection Block 0 (Block 0 (000200-000FFFh) not protected 
+                            from table reads executed in other blocks)
+                      00144   CONFIG  EBTR1 = OFF           ; Table Read Protection Block 1 (Block 1 (001000-001FFFh) not protected 
+                            from table reads executed in other blocks)
+                      00145 
+                      00146 ; CONFIG7H
+                      00147   CONFIG  EBTRB = OFF           ; Boot Block Table Read Protection bit (Boot Block (000000-0001FFh) not 
+                            protected from table reads executed in other blocks)
+                      00148 
+                      00149     
+                      00150 ;*******************************************************************************
+                      00151 ;
+                      00152 ; TODO Step #3 - Variable Definitions
+                      00153 ;
+                      00154 ; Refer to datasheet for available data memory (RAM) organization assuming
+                      00155 ; relocatible code organization (which is an option in project
+                      00156 ; properties > mpasm (Global Options)).  Absolute mode generally should
+                      00157 ; be used sparingly.
+                      00158 ;
+                      00159 ; Example of using GPR Uninitialized Data
+                      00160 ;
+                      00161 ;   GPR_VAR        UDATA
+                      00162 ;   MYVAR1         RES        1      ; User variable linker places
+                      00163 ;   MYVAR2         RES        1      ; User variable linker places
+                      00164 ;   MYVAR3         RES        1      ; User variable linker places
+                      00165 ;
+                      00166 ;   ; Example of using Access Uninitialized Data Section (when available)
+                      00167 ;   ; The variables for the context saving in the device datasheet may need
+                      00168 ;   ; memory reserved here.
+                      00169 ;   INT_VAR        UDATA_ACS
+                      00170 ;   W_TEMP         RES        1      ; w register for context saving (ACCESS)
+                      00171 ;   STATUS_TEMP    RES        1      ; status used for context saving
+                      00172 ;   BSR_TEMP       RES        1      ; bank select used for ISR context saving
+                      00173 ;
+                      00174 ;*******************************************************************************
+                      00175 
+                      00176 ; TODO PLACE VARIABLE DEFINITIONS GO HERE
+                      00177 var     UDATA_ACS
+000000                00178 led     RES         1
+000001                00179 cpt1    RES         1
+000002                00180 cpt2    RES         1
+000003                00181 cpt3    RES         1
+                      00182 
+                      00183 ;*******************************************************************************
+                      00184 ; Reset Vector
+                      00185 ;*******************************************************************************
+MPASM 5.87                     MAIN_EX_9.ASM   12-13-2023  8:51:43         PAGE  5
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00186 
+                      00187 RES_VECT  CODE    0x0000            ; processor reset vector
+000000 EF?? F???      00188     GOTO    DEBUT                   ; go to beginning of program
+                      00189 
+                      00190 ;*******************************************************************************
+                      00191 ; TODO Step #4 - Interrupt Service Routines
+                      00192 ;
+                      00193 ; There are a few different ways to structure interrupt routines in the 8
+                      00194 ; bit device families.  On PIC18's the high priority and low priority
+                      00195 ; interrupts are located at 0x0008 and 0x0018, respectively.  On PIC16's and
+                      00196 ; lower the interrupt is at 0x0004.  Between device families there is subtle
+                      00197 ; variation in the both the hardware supporting the ISR (for restoring
+                      00198 ; interrupt context) as well as the software used to restore the context
+                      00199 ; (without corrupting the STATUS bits).
+                      00200 ;
+                      00201 ; General formats are shown below in relocatible format.
+                      00202 ;
+                      00203 ;------------------------------PIC16's and below--------------------------------
+                      00204 ;
+                      00205 ; ISR       CODE    0x0004           ; interrupt vector location
+                      00206 ;
+                      00207 ;     <Search the device datasheet for 'context' and copy interrupt
+                      00208 ;     context saving code here.  Older devices need context saving code,
+                      00209 ;     but newer devices like the 16F#### don't need context saving code.>
+                      00210 ;
+                      00211 ;     RETFIE
+                      00212 ;
+                      00213 ;----------------------------------PIC18's--------------------------------------
+                      00214 ;
+                      00215 ; ISRHV     CODE    0x0008
+                      00216 ;     GOTO    HIGH_ISR
+                      00217 ; ISRLV     CODE    0x0018
+                      00218 ;     GOTO    LOW_ISR
+                      00219 ;
+                      00220 ; ISRH      CODE                     ; let linker place high ISR routine
+                      00221 ; HIGH_ISR
+                      00222 ;     <Insert High Priority ISR Here - no SW context saving>
+                      00223 ;     RETFIE  FAST
+                      00224 ;
+                      00225 ; ISRL      CODE                     ; let linker place low ISR routine
+                      00226 ; LOW_ISR
+                      00227 ;       <Search the device datasheet for 'context' and copy interrupt
+                      00228 ;       context saving code here>
+                      00229 ;     RETFIE
+                      00230 ;
+                      00231 ;*******************************************************************************
+                      00232 
+                      00233 ; TODO INSERT ISR HERE
+                      00234 
+                      00235 ;*******************************************************************************
+                      00236 ; MAIN PROGRAM
+                      00237 ;*******************************************************************************
+                      00238 
+MPASM 5.87                     MAIN_EX_9.ASM   12-13-2023  8:51:43         PAGE  6
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00239 MAIN_PROG CODE                      ; let linker place main program
+                      00240 
+                      00241  
+000000                00242 DEBUT
+                      00243 
+                      00244     ; TODO Step #5 - Insert Your Program Here
+                      00245     ; Code d'Antoine revue et nettoyé
+                      00246     ; Configure OSCCON register for 4 MHz
+000000 8CD3           00247     bsf     OSCCON, IRCF2           ; Set IRCF2 bit
+000002 8AD3           00248     bsf     OSCCON, IRCF1           ; Set IRCF1 bit
+000004 98D3           00249     bcf     OSCCON, IRCF0           ; Clear IRCF0 bit
+                      00250 
+                      00251    
+                      00252     ; Configuration des ports A et C en sortie
+000006 9092           00253     bcf     TRISA, TRISA0           ; Configure RA0 en sortie
+000008 9292           00254     bcf     TRISA, TRISA1           ; Configure RA1 en sortie
+00000A 9492           00255     bcf     TRISA, TRISA2           ; Configure RA2 en sortie
+00000C 9692           00256     bcf     TRISA, TRISA3           ; Configure RA3 en sortie
+                      00257 
+00000E 9094           00258     bcf     TRISC, TRISC0           ; Configure RC0 en sortie
+000010 9294           00259     bcf     TRISC, TRISC1           ; Configure RC1 en sortie
+000012 9494           00260     bcf     TRISC, TRISC2           ; Configure RC2 en sortie
+000014 9694           00261     bcf     TRISC, TRISC3           ; Configure RC3 en sortie
+                      00262     
+000016 0E05           00263     movlw   b'0101'                 ; Mettre la valeur binaire 0101 dans W
+000018 6E??           00264     movwf   led
+                      00265     
+00001A                00266 loop
+                      00267     
+00001A 50??           00268     movf    led, w
+00001C 6E89           00269     movwf   LATA                    ; ?crire le compl?ment sur le port A
+00001E 6E8B           00270     movwf   LATC                    ; ?crire le compl?ment sur le port C
+000020 EC?? F???      00271     call    init_tempo
+000024 50??           00272     movf    led, w
+000026 0AFF           00273     xorlw   0xFF                    ; Inverser tous les bits de W (compl?ment)
+000028 6E89           00274     movwf   LATA                    ; ?crire le compl?ment sur le port A
+00002A 6E8B           00275     movwf   LATC                    ; ?crire le compl?ment sur le port C
+00002C EC?? F???      00276     call    init_tempo
+                      00277     
+000030 EF?? F???      00278     goto loop                       ; loop forever
+                      00279 
+                      00280     
+000034                00281 reset1
+000034 0EFF           00282     movlw   0xff
+000036 6E??           00283     movwf   cpt1
+000038 0012           00284     return
+                      00285  
+00003A                00286 reset2
+00003A 0EFF           00287     movlw   0xff
+00003C 6E??           00288     movwf   cpt2
+00003E 0012           00289     return
+                      00290     
+000040                00291 init_tempo
+MPASM 5.87                     MAIN_EX_9.ASM   12-13-2023  8:51:43         PAGE  7
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+000040 0EFF           00292     movlw   0xff                    ; initialise les valeurs des compteurs à 255
+000042 6E??           00293     movwf   cpt1
+000044 6E??           00294     movwf   cpt2
+000046 0E06           00295     movlw   0x6
+000048 6E??           00296     movwf   cpt3
+00004A EF?? F???      00297     goto    tempo
+                      00298 
+00004E                00299 tempo
+00004E 06??           00300     decf    cpt1
+000050 0E00           00301     movlw   0x00
+000052 6200           00302     cpfseq  cpt1, ACCESS
+000054 EF?? F???      00303     goto    tempo
+                      00304     
+000058 06??           00305     decf    cpt2
+00005A EC?? F???      00306     call    reset1
+00005E 0E00           00307     movlw   0x00
+000060 6200           00308     cpfseq  cpt2, ACCESS
+000062 EF?? F???      00309     goto    tempo
+                      00310     
+000066 06??           00311     decf    cpt3
+000068 EC?? F???      00312     call    reset1
+00006C EC?? F???      00313     call    reset2
+000070 0E00           00314     movlw   0x00
+000072 6200           00315     cpfseq  cpt3, ACCESS
+000074 EF?? F???      00316     goto    tempo
+                      00317     
+000078 0012           00318     return
+                      00319 
+                      00320     END
+MPASM 5.87                     MAIN_EX_9.ASM   12-13-2023  8:51:43         PAGE  8
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+A                                 00000000
+ABDEN                             00000000
+ABDOVF                            00000007
+ACCESS                            00000000
+ACKDT                             00000005
+ACKEN                             00000004
+ACKSTAT                           00000006
+ACQT0                             00000003
+ACQT1                             00000004
+ACQT2                             00000005
+ADCON0                            00000FC2
+ADCON1                            00000FC1
+ADCON2                            00000FC0
+ADCS0                             00000000
+ADCS1                             00000001
+ADCS2                             00000002
+ADDEN                             00000003
+ADEN                              00000003
+ADFM                              00000007
+ADIE                              00000006
+ADIF                              00000006
+ADIP                              00000006
+ADON                              00000000
+ADRES                             00000FC3
+ADRESH                            00000FC4
+ADRESL                            00000FC3
+AN0                               00000000
+AN1                               00000001
+AN10                              00000001
+AN11                              00000004
+AN12                              00000000
+AN2                               00000002
+AN3                               00000003
+AN4                               00000005
+AN8                               00000002
+AN9                               00000003
+ANS0                              00000000
+ANS1                              00000001
+ANS10                             00000002
+ANS11                             00000003
+ANS12                             00000004
+ANS2                              00000002
+ANS3                              00000003
+ANS4                              00000004
+ANS8                              00000000
+ANS9                              00000001
+ANSEL                             00000F7E
+ANSELH                            00000F7F
+BANKED                            00000001
+BAUDCON                           00000FB8
+BAUDCTL                           00000FB8
+BCLIE                             00000003
+BCLIF                             00000003
+MPASM 5.87                     MAIN_EX_9.ASM   12-13-2023  8:51:43         PAGE  9
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+BCLIP                             00000003
+BF                                00000000
+BGST                              00000005
+BOR                               00000000
+BRG16                             00000003
+BRGH                              00000002
+BSR                               00000FE0
+C                                 00000000
+C12IN0M                           00000000
+C12IN0N                           00000000
+C12IN1M                           00000001
+C12IN1N                           00000001
+C12IN2M                           00000003
+C12IN2N                           00000003
+C12IN3M                           00000001
+C12IN3N                           00000001
+C1CH0                             00000000
+C1CH1                             00000001
+C1IE                              00000006
+C1IF                              00000006
+C1INP                             00000003
+C1IP                              00000006
+C1OE                              00000005
+C1ON                              00000007
+C1OUT_CM1CON0                     00000006
+C1OUT_PORTA                       00000004
+C1POL                             00000004
+C1R                               00000002
+C1RSEL                            00000005
+C1SP                              00000003
+C2CH0                             00000000
+C2CH1                             00000001
+C2IE                              00000005
+C2IF                              00000005
+C2INP                             00000002
+C2IP                              00000005
+C2OE                              00000005
+C2ON                              00000007
+C2OUT_CM2CON0                     00000006
+C2OUT_PORTA                       00000005
+C2POL                             00000004
+C2R                               00000002
+C2RSEL                            00000004
+C2SP                              00000003
+CCP1                              00000002
+CCP1CON                           00000FBD
+CCP1IE                            00000002
+CCP1IF                            00000002
+CCP1IP                            00000002
+CCP1M0                            00000000
+CCP1M1                            00000001
+CCP1M2                            00000002
+CCP1M3                            00000003
+MPASM 5.87                     MAIN_EX_9.ASM   12-13-2023  8:51:43         PAGE 10
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+CCP2CON                           00000FBA
+CCP2IE                            00000000
+CCP2IF                            00000000
+CCP2IP                            00000000
+CCP2M0                            00000000
+CCP2M1                            00000001
+CCP2M2                            00000002
+CCP2M3                            00000003
+CCP2_PORTB                        00000003
+CCP2_PORTC                        00000001
+CCPR1                             00000FBE
+CCPR1H                            00000FBF
+CCPR1L                            00000FBE
+CCPR2                             00000FBB
+CCPR2H                            00000FBC
+CCPR2L                            00000FBB
+CFGS                              00000006
+CHS0                              00000002
+CHS1                              00000003
+CHS2                              00000004
+CHS3                              00000005
+CK                                00000006
+CKE                               00000006
+CKP                               00000004
+CKTXP                             00000004
+CM1CON0                           00000F7B
+CM2CON0                           00000F7A
+CM2CON1                           00000F79
+CREN                              00000004
+CSRC                              00000007
+CVR0                              00000000
+CVR1                              00000001
+CVR2                              00000002
+CVR3                              00000003
+CVRCON                            00000FB5
+CVRCON2                           00000FB4
+CVREF                             00000002
+CVREN                             00000007
+CVROE                             00000006
+CVRR                              00000005
+CVRSS                             00000004
+D                                 00000005
+DC                                00000001
+DC1B0                             00000004
+DC1B1                             00000005
+DC2B0                             00000004
+DC2B1                             00000005
+DDRA                              TRISA
+DDRB                              TRISB
+DDRC                              TRISC
+DDRD                              TRISD
+DDRE                              TRISE
+DEBUT                             00000000
+MPASM 5.87                     MAIN_EX_9.ASM   12-13-2023  8:51:43         PAGE 11
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+DONE                              00000001
+DTRXP                             00000005
+D_A                               00000005
+D_NOT_A                           00000005
+ECCP1AS                           00000FB6
+ECCPAS0                           00000004
+ECCPAS1                           00000005
+ECCPAS2                           00000006
+ECCPASE                           00000007
+EEADR                             00000FA9
+EEADR0                            00000000
+EEADR1                            00000001
+EEADR2                            00000002
+EEADR3                            00000003
+EEADR4                            00000004
+EEADR5                            00000005
+EEADR6                            00000006
+EEADR7                            00000007
+EECON1                            00000FA6
+EECON2                            00000FA7
+EEDATA                            00000FA8
+EEIE                              00000004
+EEIF                              00000004
+EEIP                              00000004
+EEPGD                             00000007
+FAST                              00000001
+FERR                              00000002
+FLT0                              00000000
+FREE                              00000004
+FSR0                              00000000
+FSR0H                             00000FEA
+FSR0L                             00000FE9
+FSR1                              00000001
+FSR1H                             00000FE2
+FSR1L                             00000FE1
+FSR2                              00000002
+FSR2H                             00000FDA
+FSR2L                             00000FD9
+FVREN                             00000007
+FVRST                             00000006
+GCEN                              00000007
+GIE                               00000007
+GIEH                              00000007
+GIEL                              00000006
+GIE_GIEH                          00000007
+GO                                00000001
+GO_DONE                           00000001
+GO_NOT_DONE                       00000001
+HLVDCON                           00000FD2
+HLVDEN                            00000004
+HLVDIE                            00000002
+HLVDIF                            00000002
+HLVDIN                            00000005
+MPASM 5.87                     MAIN_EX_9.ASM   12-13-2023  8:51:43         PAGE 12
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+HLVDIP                            00000002
+HLVDL0                            00000000
+HLVDL1                            00000001
+HLVDL2                            00000002
+HLVDL3                            00000003
+IDLEN                             00000007
+INDF0                             00000FEF
+INDF1                             00000FE7
+INDF2                             00000FDF
+INT0                              00000000
+INT0E                             00000004
+INT0F                             00000001
+INT0IE                            00000004
+INT0IF                            00000001
+INT1                              00000001
+INT1E                             00000003
+INT1F                             00000000
+INT1IE                            00000003
+INT1IF                            00000000
+INT1IP                            00000006
+INT1P                             00000006
+INT2                              00000002
+INT2E                             00000004
+INT2F                             00000001
+INT2IE                            00000004
+INT2IF                            00000001
+INT2IP                            00000007
+INT2P                             00000007
+INTCON                            00000FF2
+INTCON2                           00000FF1
+INTCON3                           00000FF0
+INTEDG0                           00000006
+INTEDG1                           00000005
+INTEDG2                           00000004
+INTSRC                            00000007
+IOCB                              00000F7D
+IOCB4                             00000004
+IOCB5                             00000005
+IOCB6                             00000006
+IOCB7                             00000007
+IOFS                              00000002
+IPEN                              00000007
+IPR1                              00000F9F
+IPR2                              00000FA2
+IRCF0                             00000004
+IRCF1                             00000005
+IRCF2                             00000006
+IRVST                             00000005
+IVRST                             00000005
+KBI0                              00000004
+KBI1                              00000005
+KBI2                              00000006
+KBI3                              00000007
+MPASM 5.87                     MAIN_EX_9.ASM   12-13-2023  8:51:43         PAGE 13
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+LATA                              00000F89
+LATA0                             00000000
+LATA1                             00000001
+LATA2                             00000002
+LATA3                             00000003
+LATA4                             00000004
+LATA5                             00000005
+LATA6                             00000006
+LATA7                             00000007
+LATB                              00000F8A
+LATB0                             00000000
+LATB1                             00000001
+LATB2                             00000002
+LATB3                             00000003
+LATB4                             00000004
+LATB5                             00000005
+LATB6                             00000006
+LATB7                             00000007
+LATC                              00000F8B
+LATC0                             00000000
+LATC1                             00000001
+LATC2                             00000002
+LATC3                             00000003
+LATC4                             00000004
+LATC5                             00000005
+LATC6                             00000006
+LATC7                             00000007
+LVDCON                            00000FD2
+LVDEN                             00000004
+LVDIE                             00000002
+LVDIF                             00000002
+LVDIN                             00000005
+LVDIP                             00000002
+LVDL0                             00000000
+LVDL1                             00000001
+LVDL2                             00000002
+LVDL3                             00000003
+LVV0                              00000000
+LVV1                              00000001
+LVV2                              00000002
+LVV3                              00000003
+MC1OUT                            00000007
+MC2OUT                            00000006
+MCLR                              00000003
+MSK0                              00000000
+MSK1                              00000001
+MSK2                              00000002
+MSK3                              00000003
+MSK4                              00000004
+MSK5                              00000005
+MSK6                              00000006
+MSK7                              00000007
+N                                 00000004
+MPASM 5.87                     MAIN_EX_9.ASM   12-13-2023  8:51:43         PAGE 14
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+NOT_A                             00000005
+NOT_ADDRESS                       00000005
+NOT_BOR                           00000000
+NOT_DONE                          00000001
+NOT_MCLR                          00000003
+NOT_PD                            00000002
+NOT_POR                           00000001
+NOT_RBPU                          00000007
+NOT_RI                            00000004
+NOT_SS                            00000005
+NOT_T1SYNC                        00000002
+NOT_T3SYNC                        00000002
+NOT_TO                            00000003
+NOT_W                             00000002
+NOT_WRITE                         00000002
+OERR                              00000001
+OSCCON                            00000FD3
+OSCFIE                            00000007
+OSCFIF                            00000007
+OSCFIP                            00000007
+OSCTUNE                           00000F9B
+OSTS                              00000003
+OV                                00000003
+P                                 00000004
+P1A                               00000002
+P1B                               00000002
+P1C                               00000001
+P1D                               00000004
+P1M0                              00000006
+P1M1                              00000007
+PC                                00000FF9
+PCL                               00000FF9
+PCLATH                            00000FFA
+PCLATU                            00000FFB
+PD                                00000002
+PDC0                              00000000
+PDC1                              00000001
+PDC2                              00000002
+PDC3                              00000003
+PDC4                              00000004
+PDC5                              00000005
+PDC6                              00000006
+PEIE                              00000006
+PEIE_GIEL                         00000006
+PEN                               00000002
+PGC                               00000006
+PGD                               00000007
+PGM                               00000005
+PIE1                              00000F9D
+PIE2                              00000FA0
+PIR1                              00000F9E
+PIR2                              00000FA1
+PLLEN                             00000006
+MPASM 5.87                     MAIN_EX_9.ASM   12-13-2023  8:51:43         PAGE 15
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+PLUSW0                            00000FEB
+PLUSW1                            00000FE3
+PLUSW2                            00000FDB
+POR                               00000001
+PORTA                             00000F80
+PORTB                             00000F81
+PORTC                             00000F82
+PORTE                             00000F84
+POSTDEC0                          00000FED
+POSTDEC1                          00000FE5
+POSTDEC2                          00000FDD
+POSTINC0                          00000FEE
+POSTINC1                          00000FE6
+POSTINC2                          00000FDE
+PR2                               00000FCB
+PREINC0                           00000FEC
+PREINC1                           00000FE4
+PREINC2                           00000FDC
+PROD                              00000FF3
+PRODH                             00000FF4
+PRODL                             00000FF3
+PRSEN                             00000007
+PSA                               00000003
+PSSAC0                            00000002
+PSSAC1                            00000003
+PSSBD0                            00000000
+PSSBD1                            00000001
+PSTRCON                           00000FB9
+PWM1CON                           00000FB7
+R                                 00000002
+RA0                               00000000
+RA1                               00000001
+RA2                               00000002
+RA3                               00000003
+RA4                               00000004
+RA5                               00000005
+RA6                               00000006
+RA7                               00000007
+RB0                               00000000
+RB1                               00000001
+RB2                               00000002
+RB3                               00000003
+RB4                               00000004
+RB5                               00000005
+RB6                               00000006
+RB7                               00000007
+RBIE                              00000003
+RBIF                              00000000
+RBIP                              00000000
+RBPU                              00000007
+RC0                               00000000
+RC1                               00000001
+RC2                               00000002
+MPASM 5.87                     MAIN_EX_9.ASM   12-13-2023  8:51:43         PAGE 16
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+RC3                               00000003
+RC4                               00000004
+RC5                               00000005
+RC6                               00000006
+RC7                               00000007
+RCEN                              00000003
+RCIDL                             00000006
+RCIE                              00000005
+RCIF                              00000005
+RCIP                              00000005
+RCON                              00000FD0
+RCREG                             00000FAE
+RCSTA                             00000FAB
+RD                                00000000
+RD16                              00000007
+RE3                               00000003
+RI                                00000004
+RSEN                              00000001
+RX                                00000007
+RX9                               00000006
+RX9D                              00000000
+R_NOT_W                           00000002
+R_W                               00000002
+S                                 00000003
+SBOREN                            00000006
+SCK                               00000003
+SCKP                              00000004
+SCL                               00000003
+SCS0                              00000000
+SCS1                              00000001
+SDA                               00000004
+SDI                               00000004
+SDO                               00000005
+SEN                               00000000
+SENDB                             00000003
+SLRA                              00000000
+SLRB                              00000001
+SLRC                              00000002
+SLRCON                            00000F78
+SMP                               00000007
+SP0                               00000000
+SP1                               00000001
+SP2                               00000002
+SP3                               00000003
+SP4                               00000004
+SPBRG                             00000FAF
+SPBRGH                            00000FB0
+SPEN                              00000007
+SREN                              00000005
+SS                                00000005
+SSPADD                            00000FC8
+SSPBUF                            00000FC9
+SSPCON1                           00000FC6
+MPASM 5.87                     MAIN_EX_9.ASM   12-13-2023  8:51:43         PAGE 17
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+SSPCON2                           00000FC5
+SSPEN                             00000005
+SSPIE                             00000003
+SSPIF                             00000003
+SSPIP                             00000003
+SSPM0                             00000000
+SSPM1                             00000001
+SSPM2                             00000002
+SSPM3                             00000003
+SSPMSK                            00000F77
+SSPOV                             00000006
+SSPSTAT                           00000FC7
+START                             00000003
+STATUS                            00000FD8
+STKFUL                            00000007
+STKOVF                            00000007
+STKPTR                            00000FFC
+STKUNF                            00000006
+STOP                              00000004
+STRA                              00000000
+STRB                              00000001
+STRC                              00000002
+STRD                              00000003
+STRSYNC                           00000004
+SWDTE                             00000000
+SWDTEN                            00000000
+SYNC                              00000004
+T08BIT                            00000006
+T0CKI                             00000004
+T0CON                             00000FD5
+T0CS                              00000005
+T0IE                              00000005
+T0IF                              00000002
+T0PS0                             00000000
+T0PS1                             00000001
+T0PS2                             00000002
+T0SE                              00000004
+T13CKI                            00000000
+T1CKI                             00000000
+T1CKPS0                           00000004
+T1CKPS1                           00000005
+T1CON                             00000FCD
+T1OSCEN                           00000003
+T1OSI                             00000001
+T1OSO                             00000000
+T1RUN                             00000006
+T1SYNC                            00000002
+T2CKPS0                           00000000
+T2CKPS1                           00000001
+T2CON                             00000FCA
+T2OUTPS0                          00000003
+T2OUTPS1                          00000004
+T2OUTPS2                          00000005
+MPASM 5.87                     MAIN_EX_9.ASM   12-13-2023  8:51:43         PAGE 18
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+T2OUTPS3                          00000006
+T3CCP1                            00000003
+T3CCP2                            00000006
+T3CKI                             00000000
+T3CKPS0                           00000004
+T3CKPS1                           00000005
+T3CON                             00000FB1
+T3SYNC                            00000002
+TABLAT                            00000FF5
+TBLPTR                            00000FF6
+TBLPTRH                           00000FF7
+TBLPTRL                           00000FF6
+TBLPTRU                           00000FF8
+TMR0                              00000FD6
+TMR0H                             00000FD7
+TMR0IE                            00000005
+TMR0IF                            00000002
+TMR0IP                            00000002
+TMR0L                             00000FD6
+TMR0ON                            00000007
+TMR1                              00000FCE
+TMR1CS                            00000001
+TMR1H                             00000FCF
+TMR1IE                            00000000
+TMR1IF                            00000000
+TMR1IP                            00000000
+TMR1L                             00000FCE
+TMR1ON                            00000000
+TMR2                              00000FCC
+TMR2IE                            00000001
+TMR2IF                            00000001
+TMR2IP                            00000001
+TMR2ON                            00000002
+TMR3                              00000FB2
+TMR3CS                            00000001
+TMR3H                             00000FB3
+TMR3IE                            00000001
+TMR3IF                            00000001
+TMR3IP                            00000001
+TMR3L                             00000FB2
+TMR3ON                            00000000
+TO                                00000003
+TOS                               00000FFD
+TOSH                              00000FFE
+TOSL                              00000FFD
+TOSU                              00000FFF
+TRISA                             00000F92
+TRISA0                            00000000
+TRISA1                            00000001
+TRISA2                            00000002
+TRISA3                            00000003
+TRISA4                            00000004
+TRISA5                            00000005
+MPASM 5.87                     MAIN_EX_9.ASM   12-13-2023  8:51:43         PAGE 19
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+TRISA6                            00000006
+TRISA7                            00000007
+TRISB                             00000F93
+TRISB0                            00000000
+TRISB1                            00000001
+TRISB2                            00000002
+TRISB3                            00000003
+TRISB4                            00000004
+TRISB5                            00000005
+TRISB6                            00000006
+TRISB7                            00000007
+TRISC                             00000F94
+TRISC0                            00000000
+TRISC1                            00000001
+TRISC2                            00000002
+TRISC3                            00000003
+TRISC4                            00000004
+TRISC5                            00000005
+TRISC6                            00000006
+TRISC7                            00000007
+TRMT                              00000001
+TUN0                              00000000
+TUN1                              00000001
+TUN2                              00000002
+TUN3                              00000003
+TUN4                              00000004
+TUN5                              00000005
+TX                                00000006
+TX9                               00000006
+TX9D                              00000000
+TXEN                              00000005
+TXIE                              00000004
+TXIF                              00000004
+TXIP                              00000004
+TXREG                             00000FAD
+TXSTA                             00000FAC
+UA                                00000001
+VCFG0                             00000004
+VCFG1                             00000005
+VDIRMAG                           00000007
+VPP                               00000003
+VREFM                             00000002
+VREFN                             00000002
+VREFP                             00000003
+W                                 00000000
+WCOL                              00000007
+WDTCON                            00000FD1
+WPUB                              00000F7C
+WPUB0                             00000000
+WPUB1                             00000001
+WPUB2                             00000002
+WPUB3                             00000003
+WPUB4                             00000004
+MPASM 5.87                     MAIN_EX_9.ASM   12-13-2023  8:51:43         PAGE 20
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+WPUB5                             00000005
+WPUB6                             00000006
+WPUB7                             00000007
+WR                                00000001
+WREG                              00000FE8
+WREN                              00000002
+WRERR                             00000003
+WUE                               00000001
+Z                                 00000002
+_BOREN_NOSLP_2L                   000000FD
+_BOREN_OFF_2L                     000000F9
+_BOREN_ON_2L                      000000FB
+_BOREN_SBORDIS_2L                 000000FF
+_BORV_18_2L                       000000FF
+_BORV_22_2L                       000000F7
+_BORV_27_2L                       000000EF
+_BORV_30_2L                       000000E7
+_CCP2MX_PORTBE_3H                 000000FE
+_CCP2MX_PORTC_3H                  000000FF
+_CONFIG1H                         00300001
+_CONFIG2H                         00300003
+_CONFIG2L                         00300002
+_CONFIG3H                         00300005
+_CONFIG4L                         00300006
+_CONFIG5H                         00300009
+_CONFIG5L                         00300008
+_CONFIG6H                         0030000B
+_CONFIG6L                         0030000A
+_CONFIG7H                         0030000D
+_CONFIG7L                         0030000C
+_CP0_OFF_5L                       000000FF
+_CP0_ON_5L                        000000FE
+_CP1_OFF_5L                       000000FF
+_CP1_ON_5L                        000000FD
+_CPB_OFF_5H                       000000FF
+_CPB_ON_5H                        000000BF
+_CPD_OFF_5H                       000000FF
+_CPD_ON_5H                        0000007F
+_DEBUG_OFF_4L                     000000FF
+_DEBUG_ON_4L                      0000007F
+_DEVID1                           003FFFFE
+_DEVID2                           003FFFFF
+_EBTR0_OFF_7L                     000000FF
+_EBTR0_ON_7L                      000000FE
+_EBTR1_OFF_7L                     000000FF
+_EBTR1_ON_7L                      000000FD
+_EBTRB_OFF_7H                     000000FF
+_EBTRB_ON_7H                      000000BF
+_FCMEN_OFF_1H                     000000BF
+_FCMEN_ON_1H                      000000FF
+_FOSC_ECIO6_1H                    000000F5
+_FOSC_EC_1H                       000000F4
+_FOSC_HSPLL_1H                    000000F6
+MPASM 5.87                     MAIN_EX_9.ASM   12-13-2023  8:51:43         PAGE 21
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_FOSC_HS_1H                       000000F2
+_FOSC_INTIO67_1H                  000000F8
+_FOSC_INTIO7_1H                   000000F9
+_FOSC_LP_1H                       000000F0
+_FOSC_RCIO6_1H                    000000F7
+_FOSC_RC_1H                       000000F3
+_FOSC_XT_1H                       000000F1
+_HFOFST_OFF_3H                    000000F7
+_HFOFST_ON_3H                     000000FF
+_IDLOC0                           00200000
+_IDLOC1                           00200001
+_IDLOC2                           00200002
+_IDLOC3                           00200003
+_IDLOC4                           00200004
+_IDLOC5                           00200005
+_IDLOC6                           00200006
+_IDLOC7                           00200007
+_IESO_OFF_1H                      0000007F
+_IESO_ON_1H                       000000FF
+_LPT1OSC_OFF_3H                   000000FB
+_LPT1OSC_ON_3H                    000000FF
+_LVP_OFF_4L                       000000FB
+_LVP_ON_4L                        000000FF
+_MCLRE_OFF_3H                     0000007F
+_MCLRE_ON_3H                      000000FF
+_PBADEN_OFF_3H                    000000FD
+_PBADEN_ON_3H                     000000FF
+_PWRT_OFF_2L                      000000FF
+_PWRT_ON_2L                       000000FE
+_STVREN_OFF_4L                    000000FE
+_STVREN_ON_4L                     000000FF
+_WDTEN_OFF_2H                     000000FE
+_WDTEN_ON_2H                      000000FF
+_WDTPS_1024_2H                    000000F5
+_WDTPS_128_2H                     000000EF
+_WDTPS_16384_2H                   000000FD
+_WDTPS_16_2H                      000000E9
+_WDTPS_1_2H                       000000E1
+_WDTPS_2048_2H                    000000F7
+_WDTPS_256_2H                     000000F1
+_WDTPS_2_2H                       000000E3
+_WDTPS_32768_2H                   000000FF
+_WDTPS_32_2H                      000000EB
+_WDTPS_4096_2H                    000000F9
+_WDTPS_4_2H                       000000E5
+_WDTPS_512_2H                     000000F3
+_WDTPS_64_2H                      000000ED
+_WDTPS_8192_2H                    000000FB
+_WDTPS_8_2H                       000000E7
+_WRT0_OFF_6L                      000000FF
+_WRT0_ON_6L                       000000FE
+_WRT1_OFF_6L                      000000FF
+_WRT1_ON_6L                       000000FD
+MPASM 5.87                     MAIN_EX_9.ASM   12-13-2023  8:51:43         PAGE 22
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_WRTB_OFF_6H                      000000FF
+_WRTB_ON_6H                       000000BF
+_WRTC_OFF_6H                      000000FF
+_WRTC_ON_6H                       000000DF
+_WRTD_OFF_6H                      000000FF
+_WRTD_ON_6H                       0000007F
+_XINST_OFF_4L                     000000BF
+_XINST_ON_4L                      000000FF
+__18F23K20                        00000001
+__DEBUG                           
+__MPLAB_DEBUGGER_PK3              1
+cpt1                              00000001
+cpt2                              00000002
+cpt3                              00000003
+init_tempo                        00000040
+led                               00000000
+loop                              0000001A
+reset1                            00000034
+reset2                            0000003A
+tempo                             0000004E
+
+Errors   :     0
+Warnings :     0 reported,     0 suppressed
+Messages :     0 reported,     0 suppressed
+
+
