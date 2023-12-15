@@ -1,0 +1,4 @@
+Warning[207] C:\USERS\ANTOI\MPLABXPROJECTS\TP_E_10.X\TP_E_10.ASM 271 : Found label after column 1. (MainLoop)
+Warning[207] C:\USERS\ANTOI\MPLABXPROJECTS\TP_E_10.X\TP_E_10.ASM 278 : Found label after column 1. (Overflow)
+Warning[207] C:\USERS\ANTOI\MPLABXPROJECTS\TP_E_10.X\TP_E_10.ASM 308 : Found label after column 1. (NoOverflow)
+Warning[205] C:\USERS\ANTOI\MPLABXPROJECTS\TP_E_10.X\TP_E_10.ASM 312 : Found directive in column 1. (END)
